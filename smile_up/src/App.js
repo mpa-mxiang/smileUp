@@ -1,4 +1,3 @@
-
 import './App.css';
 import Timer from '../src/components/Timer';
 function App() {
