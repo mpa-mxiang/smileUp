@@ -1,0 +1,8 @@
+{
+  "name": "smileUp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/mpa-mxiang/smileUp.git",
+  "author": "Jiachun Xiang <jcxiang1230@gmail.com>",
+  "license": "MIT"
+}
