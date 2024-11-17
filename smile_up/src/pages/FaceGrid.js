@@ -26,7 +26,7 @@ function FaceGrid() {
     };
 
     return (
-        <div className='grid grid-cols-3 w-full'>
+        <div className='grid grid-cols-3 w-full text-center'>
             {shuffledImages.map((img, index) => (
                 <div 
                     key={index} 
@@ -36,7 +36,7 @@ function FaceGrid() {
                     <img src={img.image} alt={`face-${index}`} className="w-full" />
                 </div>
             ))}
-            <button className="border-yellow-950" type='submit'>Submit!</button>
+            <button type='submit'>Submit!</button>
         </div>
     );
 }
