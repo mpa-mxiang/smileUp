@@ -36,7 +36,8 @@ function FaceGrid() {
                     <img src={img.image} alt={`face-${index}`} className="w-full" />
                 </div>
             ))}
-            <button type='submit'>Submit!</button>
+            
+            <button className='left-full relative' type='submit'>Submit!</button>
         </div>
     );
 }
