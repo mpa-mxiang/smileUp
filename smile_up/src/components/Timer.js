@@ -36,8 +36,8 @@ const Timer = ({ initialSeconds }) => {
 
     return (
         <div>
-            <h1 className="text-3xl font-bold underline text-red-400">Countdown Timer</h1>
-            <button className="border-yellow-950" onClick={() => setIsStarted(true)} >Start timing!</button>
+            <h1 className="text-3xl font-bold text-red-400">Countdown Timer</h1>
+            <button onClick={() => setIsStarted(true)} >Start timing!</button>
             <p>{formatTime(seconds)}</p>
         </div>
     );
