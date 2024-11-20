@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import classNames from 'classnames';
 import "./FaceGrid.css";
 import FaceStorage from '../FaceStorage';
 
@@ -27,16 +28,27 @@ function FaceGrid() {
 
     return (
         <div className='grid grid-cols-3 w-full text-center'>
-            {shuffledImages.map((img, index) => (
-                <div 
-                    key={index} 
-                    onClick={() => handleImageClick(index)} 
-                    className={`cursor-pointer p-2 ${selectedIndex === index ? 'border-4 border-blue-500' : ''}`}
+            {shuffledImages.map((img, index) => {
+                const selected = index === selectedIndex;
+                const smileCheck = shuffledImages[index].isSmiling;
+                
+                console.log(`Rendering index ${index}`, { selected, smileCheck });
+
+                // https://medium.com/2359media/why-react-classnames-is-a-lifesaver-and-how-you-should-use-it-if-you-arent-already-b25a44ed5603
+                const classes = classNames('cursor-pointer p-2', {
+                    'border-4': selected,
+                    'border-green-500': smileCheck,
+                    'border-red-500': !smileCheck,
+                });
+                return <div
+                    key={index}
+                    onClick={() => handleImageClick(index)}
+                    className={classes}
                 >
                     <img src={img.image} alt={`face-${index}`} className="w-full" />
                 </div>
-            ))}
-            
+            })}
+
             <button className='left-full relative' type='submit'>Submit!</button>
         </div>
     );
