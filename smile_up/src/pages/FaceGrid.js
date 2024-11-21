@@ -9,6 +9,7 @@ const NUM_SMILING_FACES = 1;
 function FaceGrid() {
     const [selectedIndex, setSelectedIndex] = useState(null);
     const [submitted, setSubmitted] = useState(false);
+    const [reshuffle, setReshuffle] = useState(0);
 
     const shuffledImages = useMemo(() => {
         const shuffledNeutralFaces = FaceStorage.neutral.sort(() => 0.5 - Math.random());
@@ -21,7 +22,7 @@ function FaceGrid() {
             .map(value => ({ value, sort: Math.random() }))
             .sort((a, b) => a.sort - b.sort)
             .map(({ value }) => value);
-    }, [FaceStorage.smiling, FaceStorage.neutral]);
+    }, [reshuffle]);
 
     const handleImageClick = (index) => {
         if (!submitted) {
@@ -38,12 +39,13 @@ function FaceGrid() {
             setTimeout(() => {
                 setSelectedIndex(null);
                 setSubmitted(false);
-            }, 2000);
+                setReshuffle((prev) => prev + 1);
+            }, 1000);
         } else {
             setTimeout(() => {
                 setSubmitted(false);
                 setSelectedIndex(null);
-            }, 2000);
+            }, 1000);
         }
     };
 
