@@ -5,14 +5,10 @@ const Timer = ({ initialSeconds }) => {
     const [isStarted, setIsStarted] = useState(false);
  
     useEffect(() => {
-        // Exit early if countdown is finished
-        if (seconds <= 0) {
-            return;
-        }
 
         if (isStarted){
             const timer = setInterval(() => {
-                setSeconds((prevSeconds) => prevSeconds - 1);
+                setSeconds((prevSeconds) => prevSeconds + 1);
             }, 1000)
             
             // Clean up the timer
@@ -36,9 +32,7 @@ const Timer = ({ initialSeconds }) => {
 
     return (
         <div>
-            <h1 className="text-3xl font-bold text-red-400">Countdown Timer</h1>
-            <button onClick={() => setIsStarted(true)} >Start timing!</button>
-            <p>{formatTime(seconds)}</p>
+            <button onClick={() => setIsStarted(true)} >Start!</button>
         </div>
     );
 };
