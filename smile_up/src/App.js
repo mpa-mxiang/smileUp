@@ -4,7 +4,8 @@ import FaceGrid from './pages/FaceGrid';
 function App() {
   return (
     <div className="App">
-      <Timer initialSeconds={10} />
+      <h1 className="text-3xl font-bold text-red-400">Smile Up</h1>
+      <Timer initialSeconds={0} />
       <FaceGrid />
     </div>
   );
