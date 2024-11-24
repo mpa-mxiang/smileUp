@@ -1,6 +1,5 @@
 import React, { useState, useMemo } from 'react';
 import classNames from 'classnames';
-import './FaceGrid.css';
 import FaceStorage from '../FaceStorage';
 
 const NUM_NEUTRAL_FACES = 8;
