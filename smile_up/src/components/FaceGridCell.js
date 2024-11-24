@@ -1,14 +1,16 @@
 import React from 'react';
-import PropTypes, { string } from 'prop-types';
+import PropTypes from 'prop-types';
 
-function FaceGridCell(props) {
+function FaceGridCell({ imgUrl }) {
   return (
-    <div>FaceGridCell</div>
+    <div>
+      <img src={imgUrl} alt="Face" className="w-full" />
+    </div>
   );
 }
 
 FaceGridCell.propTypes = {
-  imgUrl: string,
+  imgUrl: PropTypes.string.isRequired,
 };
 
 export default FaceGridCell;
