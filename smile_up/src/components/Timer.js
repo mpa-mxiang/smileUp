@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 const Timer = ({ initialSeconds }) => {
   const [seconds, setSeconds] = useState(initialSeconds);
@@ -10,29 +11,50 @@ const Timer = ({ initialSeconds }) => {
         setSeconds((prevSeconds) => prevSeconds + 1);
       }, 1000);
 
-      // Clean up the timer
+      // Cleanup function to clear the interval
       return () => clearInterval(timer);
     }
-  }, [seconds, isStarted]);
 
-  // Format the remaining time (e.g., “00:05:10” for 5 minutes and 10 seconds)
+    // Explicitly return undefined when no cleanup is needed
+    return undefined;
+  }, [isStarted]);
+
   const formatTime = (timeInSeconds) => {
     const minutes = Math.floor(timeInSeconds / 60)
       .toString()
       .padStart(2, '0');
-    const seconds = (timeInSeconds % 60).toString().padStart(2, '0');
-    return `${minutes}:${seconds}`;
+    const secs = (timeInSeconds % 60).toString().padStart(2, '0');
+    return `${minutes}:${secs}`;
   };
 
   const startTimer = () => {
+    setIsStarted(true);
+  };
 
+  const stopTimer = () => {
+    setIsStarted(false);
+  };
+
+  const resetTimer = () => {
+    setIsStarted(false);
+    setSeconds(initialSeconds);
   };
 
   return (
     <div>
-      <button onClick={() => setIsStarted(true)}>Start!</button>
+      <h1>
+        Timer:
+        {formatTime(seconds)}
+      </h1>
+      <button type="button" onClick={startTimer}>Start</button>
+      <button type="button" onClick={stopTimer}>Stop</button>
+      <button type="button" onClick={resetTimer}>Reset</button>
     </div>
   );
+};
+
+Timer.propTypes = {
+  initialSeconds: PropTypes.number.isRequired,
 };
 
 export default Timer;

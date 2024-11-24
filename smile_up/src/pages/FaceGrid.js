@@ -12,17 +12,17 @@ function FaceGrid() {
   const [reshuffle, setReshuffle] = useState(0);
 
   const shuffledImages = useMemo(() => {
-    const shuffledNeutralFaces = FaceStorage.neutral.sort(() => 0.5 - Math.random());
+    const shuffledNeutralFaces = [...FaceStorage.neutral].sort(() => 0.5 - Math.random());
     const chosenNeutralFaces = shuffledNeutralFaces.slice(0, NUM_NEUTRAL_FACES);
 
-    const shuffledSmilingFaces = FaceStorage.smiling.sort(() => 0.5 - Math.random());
+    const shuffledSmilingFaces = [...FaceStorage.smiling].sort(() => 0.5 - Math.random());
     const chosenSmilingFaces = shuffledSmilingFaces.slice(0, NUM_SMILING_FACES);
 
     return [...chosenNeutralFaces, ...chosenSmilingFaces]
       .map((value) => ({ value, sort: Math.random() }))
       .sort((a, b) => a.sort - b.sort)
-      .map(({ value }) => value);
-  }, [reshuffle]);
+      .map(({ value }, idx) => ({ ...value, id: `${value.image}-${idx}` }));
+  }, [reshuffle]); // reshuffle is necessary to trigger a new memoized array
 
   const handleImageClick = (index) => {
     if (!submitted) {
@@ -63,8 +63,11 @@ function FaceGrid() {
 
         return (
           <div
-            key={index}
+            key={img.id}
+            role="button"
+            tabIndex={0}
             onClick={() => handleImageClick(index)}
+            onKeyDown={(e) => e.key === 'Enter' && handleImageClick(index)}
             className={classes}
           >
             <img src={img.image} alt={`face-${index}`} className="w-full" />
