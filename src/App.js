@@ -1,7 +1,8 @@
 import './App.css';
-import Timer from '../src/components/Timer';
+import Timer from './components/Timer';
 import FaceGrid from './pages/FaceGrid';
 import Navbar from './components/Navbar';
+
 function App() {
   return (
     <div className="App">
