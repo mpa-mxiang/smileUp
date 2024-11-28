@@ -11,48 +11,26 @@ const Timer = ({ initialSeconds }) => {
         setSeconds((prevSeconds) => prevSeconds + 1);
       }, 1000);
 
-      // Cleanup function to clear the interval
+      // Clean up the timer
       return () => clearInterval(timer);
     }
-
-    // Explicitly return undefined when no cleanup is needed
-    return undefined;
+    return undefined; // Explicitly return undefined
   }, [isStarted]);
-
-  const formatTime = (timeInSeconds) => {
-    const minutes = Math.floor(timeInSeconds / 60)
-      .toString()
-      .padStart(2, '0');
-    const secs = (timeInSeconds % 60).toString().padStart(2, '0');
-    return `${minutes}:${secs}`;
-  };
-
-  const startTimer = () => {
-    setIsStarted(true);
-  };
-
-  const stopTimer = () => {
-    setIsStarted(false);
-  };
-
-  const resetTimer = () => {
-    setIsStarted(false);
-    setSeconds(initialSeconds);
-  };
 
   return (
     <div>
-      <h1>
-        Timer:
-        {formatTime(seconds)}
-      </h1>
-      <button type="button" onClick={startTimer}>Start</button>
-      <button type="button" onClick={stopTimer}>Stop</button>
-      <button type="button" onClick={resetTimer}>Reset</button>
+      <p>
+        Time elapsed:
+        {seconds}
+        {' '}
+        seconds
+      </p>
+      <button type="button" onClick={() => setIsStarted(true)}>Start!</button>
     </div>
   );
 };
 
+// Add prop-types validation
 Timer.propTypes = {
   initialSeconds: PropTypes.number.isRequired,
 };
