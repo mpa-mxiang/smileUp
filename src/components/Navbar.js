@@ -9,12 +9,11 @@ function Navbar() {
   };
   return (
     <header>
-      <h1>Logo</h1>
+      <h1>SmileUp</h1>
       <nav ref={navRef}>
         <a href="/#">About</a>
-        <a href="/#">Features</a>
-        <a href="/#">FAQs</a>
-        <a href="/#">Testimonials</a>
+        <a href="/#">Signup</a>
+        <a href="/#">Login</a>
         <button className="nav-btn nav-close-btn" type="button" onClick={showNavbar}>
           <FaTimes />
         </button>
