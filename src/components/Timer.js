@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-const Timer = ({ initialSeconds }) => {
+const Timer = ({ initialSeconds, isStarted, setIsStarted }) => {
   const [seconds, setSeconds] = useState(initialSeconds);
-  const [isStarted, setIsStarted] = useState(false);
 
   useEffect(() => {
     if (isStarted) {
@@ -33,6 +32,8 @@ const Timer = ({ initialSeconds }) => {
 // Add prop-types validation
 Timer.propTypes = {
   initialSeconds: PropTypes.number.isRequired,
+  isStarted: PropTypes.bool.isRequired,
+  setIsStarted: PropTypes.func.isRequired,
 };
 
 export default Timer;
