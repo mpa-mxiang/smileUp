@@ -11,7 +11,7 @@ function App() {
     <div className="App">
       <Navbar />
       <h1 className="text-3xl font-bold text-red-400">Smile Up</h1>
-      <Timer initialSeconds={0} setIsStarted={setIsStarted} />
+      <Timer initialSeconds={0} isStarted={isStarted} setIsStarted={setIsStarted} />
       {isStarted && <FaceGrid />}
     </div>
   );
